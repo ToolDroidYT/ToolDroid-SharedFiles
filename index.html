@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Noice</title> <!-- HTML --> <!-- Custom Styles -->
+		<link rel="stylesheet" href="style.css">
+		<meta name="description" content="ToolDroid - Just Why!">
+		<link rel="home" href="https://tooldroid-poggers.neocities.org" title="ToolDroid Just Why">
+		<meta name="theme-color" content="#343434">
+		<meta name="author" content="ToolDroid Just Why">
+		<meta property="og:title" content="ToolDroid Just Why">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://tooldroid-poggers.neocities.org">
+		<meta property="og:image" content="https://tooldroid-poggers.neocities.org/files/1.webp">
+		<meta property="og:image:width" content="120">
+		<meta property="og:image:height" content="120">
+		<meta property="og:site_name" content="ToolDroid Just Why">
+		<meta name="author" content="ToolDroid">
+		<meta name="google" content="ToolDroid, ToolDroid 1.18, ToolDroid Download, ToolDroid Infinite Time, Infinite Time">
+		<meta name="robots" content="ToolDroid, ToolDroid 1.18, ToolDroid Download, ToolDroid Infinite Time, Infinite Time">
+		<meta name="googlebot" content="ToolDroid, ToolDroid 1.18, ToolDroid Download, ToolDroid Infinite Time, Infinite Time">
+		<meta name="keywords" content="ToolDroid, ToolDroid 1.18, ToolDroid Download, ToolDroid Infinite Time, Infinite Time">
+		<link rel="shortcut icon" id="siteIcon" href="https://tooldroid-poggers.neocities.org/files/1.webp" type="image/x-icon">
+		<link rel="icon" id="siteIcon" href="https://tooldroid-poggers.neocities.org/files/1.webp" type="image/x-icon">
+		<link rel="apple-touch-icon-precomposed" id="siteIcon" href="https://tooldroid-poggers.neocities.org/files/1.webp" type="image/x-icon">
+		<link rel="apple-touch-icon" id="siteIcon" href="files/1.webp" type="image/x-icon">
+	</head>
+	<body>
+		<canvas id="snowCanvas">
+		</canvas>
+		<canvas id="myCanvas" width="10" height="10">
+		</canvas>
+		<div class="container">
+			<div class="definition"><iframe class="frame" src=""></iframe>
+				<div class="close_btn">
+					CLOSE
+				</div>
+			</div>
+			<div id="grid">
+				<div class="box">
+					😢
+				</div>
+				<div class="box">
+					😡
+				</div>
+				<div class="box">
+					😶‍🌫️
+				</div>
+				<div class="box">
+					😫
+				</div>
+				<div class="box">
+					😵
+				</div>
+				<div class="box">
+					😬
+				</div>
+				<div class="box">
+					😮‍💨
+				</div>
+				<div class="box">
+					😊
+				</div>
+			</div>
+		</div> <!-- Project -->
+		<script src="main.js"></script>
+		<script>
+		const canvas2 = document.getElementById('myCanvas');
+		const ctx2 = canvas2.getContext('2d');
+		let particles = [];
+
+		function Particle(x, y, vx, vy, radius, color) {
+			this.x = x;
+			this.y = y;
+			this.vx = vx;
+			this.vy = vy;
+			this.radius = radius;
+			this.color = color;
+			this.alpha = 1;
+
+			this.draw = function() {
+				ctx2.beginPath();
+				ctx2.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+				ctx2.fillStyle = this.color;
+				ctx2.globalAlpha = this.alpha;
+				ctx2.fill();
+			}
+
+			this.update = function() {
+				this.x += this.vx;
+				this.y += this.vy;
+				this.alpha -= 0.01;
+			}
+		}
+
+		function createParticles(x, y, radius, particleCount) {
+			for (let i = 0; i < particleCount; i++) {
+				const angle = Math.random() * Math.PI * 2;
+				const speed = Math.random() * 5 + 2;
+				const vx = Math.cos(angle) * speed;
+				const vy = Math.sin(angle) * speed;
+				const color = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+				particles.push(new Particle(x, y, vx, vy, radius, color));
+			}
+		}
+
+		function animate() {
+			requestAnimationFrame(animate);
+			ctx2.fillStyle = 'rgba(0, 0, 0, 0)';
+			ctx2.fillRect(0, 0, canvas2.width, canvas2.height);
+			particles.forEach((particle, index) => {
+				if (particle.alpha <= 0) {
+					particles.splice(index, 1);
+				} else {
+					particle.update();
+					particle.draw();
+				}
+			})
+		}
+
+		canvas2.addEventListener('click', function(e) {
+			const x = e.clientX;
+			const y = e.clientY;
+			const radius = getRandomNumber(1, 8);
+			const particleCount = getRandomNumber(30, 128);
+			createParticles(x, y, radius, particleCount);
+		});
+		animate();
+	</script>
+	</body>
+</html>

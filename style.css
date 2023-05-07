@@ -1,0 +1,94 @@
+body {
+	font-size: 15pt;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+}
+
+* {
+	transition: 0.5s ease;
+}
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#grid {
+	width: 75%;
+	height: 75%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	gap: 1rem;
+}
+
+.box {
+	padding: 10px;
+	background-color: #007bff;
+	color: white;
+	font-size: 30vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	overflow: auto;
+}
+
+.box:hover {
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	transform: scale(0.8);
+}
+
+canvas {
+	background-color: transparent;
+}
+#snowCanvas {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	pointer-events: none;
+}
+
+#myCanvas {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	pointer-events: none;
+}
+
+.definition {
+	width: 80vw;
+	z-index: 1000!important;
+	height: 80vh;
+	position: fixed;
+	display: none;
+}
+
+.definition iframe {
+	width: 100%;
+	height: 100%;
+	border-radius: 30px;
+	border: 0px solid transparent;
+}
+
+.close_btn {
+	position: absolute;
+	bottom: 12px;
+	left: 50%;
+	background-color: #4997d0;
+	border-radius: 4px;
+	padding: 6px 24px;
+	font-size: 18px;
+	transform: translate(-50%, -50%);
+}
+
+.close_btn:hover {
+	opacity: 0.89;
+	transform: scale(0.90) translate(-50%, -50%);
+}
